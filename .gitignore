@@ -2,3 +2,4 @@
 /Assets/Datasets/Train(1).csv
 /__pycache__
 secrets.toml
+_pycache_

@@ -49,8 +49,6 @@ def display_descriptive_statistics(train_copy):
 
 
 # Load the dataset and display descriptive statistics
-#query = "SELECT * FROM dbo.LP2_Telco_churn_first_3000"
-#df_concat = query_database(query)
 display_descriptive_statistics(train_copy)
 
 # Additional analysis
@@ -64,16 +62,6 @@ fig_corr = go.Figure(data=go.Heatmap(z=correlation.values,
                                      colorscale='Viridis'))
 st.plotly_chart(fig_corr)
 
-# # Churn counts by Internet Service
-# #Churn counts by Internet Service
-# churn_counts = df_concat.groupby(['InternetService', 'Churn']).size().unstack()
-# st.write("#### Churn Counts by Internet Service:")
-# st.write(churn_counts)
 
-# churn_counts = df_concat.groupby(['InternetService', 'Churn']).size().unstack()
-# st.write("#### Churn Counts by Internet Service:")
-# fig_churn_counts = px.bar(churn_counts, x=churn_counts.index, y=churn_counts.columns,
-#                           title="Churn Counts by Internet Service", barmode='group')
-# st.plotly_chart(fig_churn_counts)
 
 
