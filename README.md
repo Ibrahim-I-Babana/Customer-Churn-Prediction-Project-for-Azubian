@@ -31,18 +31,4 @@ The values representing Churn are 0 and 1. Where 1 indicates the customer churne
 ### Dataset
 Kindly find the dataset for this challenge [here](https://zindi.africa/competitions/customer-churn-prediction-challenge-for-azubian/data/)
 
-## Summary
-| Code      | Name        | ML Development Notebook|App Development| Deployed App | PowerPoint Presentation of Challenge |
-|-----------|-------------|-------------:|-------------:|-------------|-------------|
-| Capstone Project |Customer Churn Prediction Challenge| [Project Notebook](https://github.com/acheampongmaa/Azubian-Customer-Churn-Prediction-Challenge/blob/main/Team%20Serene%20Capstone%20Project%20Notebook.ipynb/)  |[Gradio App Notebook](https://github.com/acheampongmaa/Azubian-Customer-Churn-Prediction-Challenge/blob/main/Team%20Serene%20Capstone%20Project%20Gradio%20App%20Notebook.ipynb/) |[Customer Churn App with Gradio](https://huggingface.co/spaces/Queensly/Customer_Churn/)| [PowerPoint Presentation]( https://github.com/acheampongmaa/Azubian-Customer-Churn-Prediction-Challenge/blob/main/Team%20Serene%20Capstone%20Project%20PowerPoint%20Presentation.pptx/) |
 
-## Screenshot of App Interface
-
-
-
-## Author
-- Queensly K. Acheampongmaa 
-
-
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue)](https://www.linkedin.com/in/queensly-kyerewaa-acheampongmaa)
-  [![Hugging Face Spaces](https://img.shields.io/badge/Hugging-Face-yellow)](https://huggingface.co/Queensly
