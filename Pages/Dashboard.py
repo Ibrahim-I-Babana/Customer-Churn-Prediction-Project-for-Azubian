@@ -29,7 +29,7 @@ def display_visualizations(df):
         st.write("### REGION Distribution")
         region_counts = df['REGION'].value_counts()
         fig_region = plt.figure(figsize=(10, 6))
-        region_plot = sns.barplot(x=region_counts.index, y=region_counts.values, palette='pastel')
+        region_plot = sns.barplot(y=region_counts.index, x=region_counts.values, palette='pastel')
         region_plot.set_title('REGION Distribution')
         region_plot.set_xlabel('REGION')
         region_plot.set_ylabel('Count')
