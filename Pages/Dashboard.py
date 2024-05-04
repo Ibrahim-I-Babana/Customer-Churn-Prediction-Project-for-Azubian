@@ -13,7 +13,7 @@ st.set_page_config(
  
 st.title(' :bar_chart: My Customer Churn Dashboard')
  
-df = pd.read_csv('Assets\Datasets\Train(1).csv')
+df = pd.read_csv('Assets\Datasets\Train.csv')
 # Define a function to display visualizations
 def display_visualizations(df):
     st.subheader('EDA Visualizations')
