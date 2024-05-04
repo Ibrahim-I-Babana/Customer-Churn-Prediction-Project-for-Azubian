@@ -11,7 +11,7 @@ st.set_page_config(
     layout='wide'
 )
  
-st.title(' :bar_chart: My Customer Churn Dashboard')
+st.title(' :bar_chart: Customer Churn Dashboard')
  
 df = pd.read_csv('Assets\Datasets\Train.csv')
 # Define a function to display visualizations
@@ -74,7 +74,7 @@ def display_kpi_dashboard(df):
     col1, col2 = st.columns(2)
  
     with col1:
-        st.write("### TENURE vs. CHURN")
+        st.write("### Tenure vs. Churn")
         tenure_churn_counts = df.groupby('TENURE')['CHURN'].value_counts().unstack()
         fig, ax = plt.subplots()
         tenure_churn_counts.plot(kind='bar', stacked=False, ax=ax)

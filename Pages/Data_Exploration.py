@@ -36,7 +36,7 @@ train_copy=train_data.copy()
 # Generate descriptive statistics of the churn_train DataFrame
 
 def display_descriptive_statistics(train_copy):
-    st.write("#### SAMPLE DATA:")
+    st.write("#### SAMPLE DATA📊:")
     st.write(train_copy.head(20))
     st.subheader("DESCRIPTIVE STATISTICS")
     st.write("#### Summary Statistics for Numerical Columns:")
