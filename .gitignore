@@ -1,6 +1,6 @@
 /env
-/Assets/Datasets/Train(1).csv
 /__pycache__
 secrets.toml
 _pycache_
 /virtual_env
+/Assets/Datasets
