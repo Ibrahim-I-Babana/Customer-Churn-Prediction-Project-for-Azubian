@@ -4,3 +4,4 @@ secrets.toml
 _pycache_
 /virtual_env
 /Assets/Datasets
+/myenv

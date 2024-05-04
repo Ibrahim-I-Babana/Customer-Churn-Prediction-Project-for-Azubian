@@ -120,85 +120,70 @@ if 'Probabilities' not in st.session_state:
 
 #Create columns for prediction page 
 def predict_page():
+    pipeline, encoder = choose_model()
+    
     with st.form('input_variables'):
-        pipeline,encoder = choose_model()
-        col1, col2, col3 = st.columns(3)
+        # Define the options for Region and Tenure
+        region_options = {
+            'DAKAR': 'DAKAR',
+            'DIOURBEL': 'DIOURBEL',
+            'FATICK': 'FATICK',
+            'KAFFRINE': 'KAFFRINE',
+            'KAOLACK': 'KAOLACK',
+            'KEDOUGOU': 'KEDOUGOU',
+            'KOLDA': 'KOLDA',
+            'LOUGA': 'LOUGA',
+            'MATAM': 'MATAM',
+            'SAINT-LOUIS': 'SAINT-LOUIS',
+            'SEDHIOU': 'SEDHIOU',
+            'TAMBACOUNDA': 'TAMBACOUNDA',
+            'THIES': 'THIES',
+            'ZIGUINCHOR': 'ZIGUINCHOR'
+        }
 
-#Display the prediction
- 
+        tenure_options = {
+            'D 3-6 months': 'D 3-6 months',
+            'E 6-9 months': 'E 6-9 months',
+            'F 9-12 months': 'F 9-12 months',
+            'G 12-15 months': 'G 12-15 months',
+            'H 15-18 months': 'H 15-18 months',
+            'I 18-21 months': 'I 18-21 months',
+            'J 21-24 months': 'J 21-24 months',
+            'K > 24 months': 'K > 24 months'
+        }
+        
+        # Create two rows
+        row1, row2 = st.columns(2)
 
-#col1, col2, col3 = st.columns(3)
+        # Row 1 inputs (Demographic Information and Service and Preferences)
+        with row1:
+            with st.expander("#### Demographic Information🧑‍🦰👩‍🦰🧔‍🦰"):
+                region = st.selectbox("Region", list(region_options.keys()), key="region")
+                tenure = st.selectbox("Tenure", list(tenure_options.keys()), key="tenure")
+                income_frequency = st.number_input("Income Frequency",  min_value=1, max_value=92, key="income_frequency")
 
-# Initialize session state
-#if "user_inputs" not in st.session_state:
- #   st.session_state.user_inputs = {}
+            with st.expander("#### Service and Preferences📱💵📶📦"):
+                revenue = st.number_input("Revenue", min_value=1, max_value=532178, key="revenue")
+                arpu_segment = st.number_input("ARPU Segment", min_value=0, max_value=177393, key="arpu_segment")
+                top_pack = st.text_input("Top Pack", key="top_pack")
+                frequency_top_pack = st.number_input("Frequency Top Pack", min_value=0, max_value=625, key="frequency_top_pack")
 
-# Define the options for Region and Tenure
-    region_options = {
-    'DAKAR': 'DAKAR',
-    'DIOURBEL': 'DIOURBEL',
-    'FATICK': 'FATICK',
-    'KAFFRINE': 'KAFFRINE',
-    'KAOLACK': 'KAOLACK',
-    'KEDOUGOU': 'KEDOUGOU',
-    'KOLDA': 'KOLDA',
-    'LOUGA': 'LOUGA',
-    'MATAM': 'MATAM',
-    'SAINT-LOUIS': 'SAINT-LOUIS',
-    'SEDHIOU': 'SEDHIOU',
-    'TAMBACOUNDA': 'TAMBACOUNDA',
-    'THIES': 'THIES',
-    'ZIGUINCHOR': 'ZIGUINCHOR'
-    }
+        # Row 2 inputs (Usage Patterns)
+        with row2:
+            with st.expander("#### Usage Patterns💰🔄📶📞⏰📊"):
+                recharge_amount = st.number_input("Recharge Amount",  min_value=20, max_value=470000, key="recharge_amount")
+                recharge_frequency = st.number_input("Recharge Frequency", min_value=1, max_value=132, key="recharge_frequency")
+                data_volume = st.number_input("Data Volume", min_value=0, max_value=1702310, key="data_volume")
+                on_net = st.number_input("On Net", min_value=0, max_value=50810, key="on_net")
+                orange = st.number_input("Orange", min_value=0, max_value=12041, key="orange")
+                tigo = st.number_input("Tigo", min_value=0, max_value=4174, key="tigo")
+                regularity = st.number_input("Regularity", min_value=1, max_value=63, key="regularity")
 
-    tenure_options = {
-    'D 3-6 months': 'D 3-6 months',
-    'E 6-9 months': 'E 6-9 months',
-    'F 9-12 months': 'F 9-12 months',
-    'G 12-15 months': 'G 12-15 months',
-    'H 15-18 months': 'H 15-18 months',
-    'I 18-21 months': 'I 18-21 months',
-    'J 21-24 months': 'J 21-24 months',
-    'K > 24 months': 'K > 24 months'
-    }
+        # Submit button
+        submitted = st.form_submit_button('Submit')
 
-    #Top_Pack = {
-    #     
-    #}
-
-
-# Column 1 inputs (Region and Tenure)
-    with col1:
-         st.header("Demographic Information")
-         region = st.selectbox("Region", list(region_options.keys()), key="region") #, on_change=update_inputs)
-         tenure = st.selectbox("Tenure", list(tenure_options.keys()), key="tenure") #, on_change=update_inputs)
-         income_frequency = st.text_input("Income Frequency", key="income_frequency")
-    
-    
-    
-
-# Column 2 inputs
-    with col2:
-         st.header("Usage Patterns")
-         recharge_amount = st.text_input("Recharge Amount", key="recharge_amount")
-         recharge_frequency = st.text_input("Recharge Frequency", key="recharge_frequency")
-         data_volume = st.select_slider("Data Volume",options=list(range(0, 1702310)), key="data_volume")
-         on_net = st.select_slider("On Net",options=list(range(0, 50810)), key="on_net")
-         orange = st.select_slider("Orange",options=list(range(0, 12041)), key="orange")
-         tigo = st.select_slider("Tigo",options=list(range(0, 4174)), key="tigo")
-         regularity = st.select_slider("Regularity",options=list(range(1, 63)), key="regularity")
-
-# Column 3 inputs
-    with col3:
-         st.header("Service and Preferences")
-         revenue = st.text_input("Revenue", key="revenue")
-         arpu_segment = st.text_input("ARPU Segment", key="arpu_segment")
-         top_pack = st.text_input("Top Pack", key="top_pack")
-         frequency_top_pack = st.select_slider("Frequency Top Pack",options=list(range(0, 625)), key="frequency_top_pack")
-
-# Submit button
-         st.form_submit_button('Submit',on_click=make_predictions,kwargs=dict(pipeline=pipeline, encoder=encoder)) 
-         #submitted = st.button("Submit",on_click=make_predictions,kwargs=dict(pipeline=pipeline, encoder=encoder))
+        if submitted:
+            make_predictions(pipeline, encoder)
 
 if __name__ == "__main__":
     st.markdown("# 📈Make a Prediction")

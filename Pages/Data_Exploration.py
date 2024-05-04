@@ -17,7 +17,7 @@ st.title('Exploratory Analysis of Telecommunications Data (EDA)')
 import pandas as pd
 
 # Define file paths relative to the current working directory
-train_file = 'Assets/Datasets/Train(1).csv'
+train_file = 'Assets/Datasets/Train.csv'
 test_file = 'Assets/Datasets/Test(3).csv'
 submission_file = 'Assets/Datasets/SampleSubmission(1).csv'
 variable_definitions_file = 'Assets/Datasets/VariableDefinitions.csv'
@@ -36,31 +36,74 @@ train_copy=train_data.copy()
 # Generate descriptive statistics of the churn_train DataFrame
 
 def display_descriptive_statistics(train_copy):
-    st.subheader("Descriptive Statistics")
-    st.write("#### Summary Statistics:")
+    st.write("#### SAMPLE DATA:")
+    st.write(train_copy.head(20))
+    st.subheader("DESCRIPTIVE STATISTICS")
+    st.write("#### Summary Statistics for Numerical Columns:")
     st.write(train_copy.describe().T)
     st.write("#### Summary Statistics for Categorical Columns:")
     st.write(train_copy.describe(include='object').T)
-    st.write("#### Sample Data:")
-    st.write(train_copy.head())
-    st.write("#### Dataset Info:")
-    st.write(train_copy.info())
-
-
-
+    
+    # st.write("#### Dataset Info:")
+    # st.write(train_copy.info())
 # Load the dataset and display descriptive statistics
 display_descriptive_statistics(train_copy)
 
-# Additional analysis
-st.subheader("Additional Analysis")
-# Correlation
-correlation = train_copy.corr(numeric_only=True)
-st.write("#### Correlation Matrix:")
-fig_corr = go.Figure(data=go.Heatmap(z=correlation.values,
-                                     x=correlation.columns,
-                                     y=correlation.columns,
-                                     colorscale='Viridis'))
-st.plotly_chart(fig_corr)
+
+'### **DESCRIPTION OF COLUMNS** ###'
+'**The churn dataset includes 19 variables including 15 numeric variables and 04 categorical variables.**'
+
+'**user_id:**'
+
+'**REGION:** *The location of each client*'
+
+'**TENURE:** *duration in the networ*'
+
+'**MONTANT:** *top-up amount*'
+
+'**FREQUENCE_RECH:** *number of times the customer refilled*'
+
+'**REVENUE:** *monthly income of each client*'
+
+'**ARPU_SEGMENT:** *income over 90 days / 3*'
+
+'**FREQUENCE:** *number of times the client has made an income*'
+
+'**DATA_VOLUME:** *number of connections*'
+
+'**ON_NET:** *inter expresso call*'
+
+'**ORANGE:** *call to orange*'
+
+'**TIGO:** *call to Tigo*'
+
+'**ZONE1:** *call to zones1*'
+
+'**ZONE2:** *call to zones2*'
+
+'**MRG:** *a client who is going*'
+
+'**REGULARITY:** *number of times the client is active for 90 days*'
+
+'**TOP_PACK:** *the most active packs*'
+
+'**FREQ_TOP_PACK:** *number of times the client has activated the top pack packages*'
+
+'**CHURN:** *variable to predict - Target*'
+
+
+
+
+# # Additional analysis
+# st.subheader("Additional Analysis")
+# # Correlation
+# correlation = train_copy.corr(numeric_only=True)
+# st.write("#### Correlation Matrix:")
+# fig_corr = go.Figure(data=go.Heatmap(z=correlation.values,
+#                                      x=correlation.columns,
+#                                      y=correlation.columns,
+#                                      colorscale='Viridis'))
+# st.plotly_chart(fig_corr)
 
 
 
