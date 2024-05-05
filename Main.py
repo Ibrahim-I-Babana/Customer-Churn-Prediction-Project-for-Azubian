@@ -11,7 +11,7 @@ def main():
         layout="wide"
     )
 
-    st.markdown('# 📞 Welcome to Telecom Churn Predictor')
+    st.markdown('# 🏠📞 Welcome to Telecom Churn Predictor🌐')
     st.write("This application predicts the churn rate of customers in a telecom company.")
     st.markdown("### Please use username: Team_Hafnium and password: guest005 to access this application")
     st.write('## Key Features:')

@@ -11,7 +11,7 @@ st.set_page_config(
     layout='wide'
 )
  
-st.title(' :bar_chart: My Customer Churn Dashboard')
+st.title(' :bar_chart: Customer Churn Dashboard📈_')
  
 df = pd.read_csv('Assets\Datasets\Train.csv')
 # Define a function to display visualizations
@@ -29,7 +29,7 @@ def display_visualizations(df):
         st.write("### REGION Distribution")
         region_counts = df['REGION'].value_counts()
         fig_region = plt.figure(figsize=(10, 6))
-        region_plot = sns.barplot(x=region_counts.index, y=region_counts.values, palette='pastel')
+        region_plot = sns.barplot(y=region_counts.index, x=region_counts.values, palette='pastel')
         region_plot.set_title('REGION Distribution')
         region_plot.set_xlabel('REGION')
         region_plot.set_ylabel('Count')
@@ -74,7 +74,7 @@ def display_kpi_dashboard(df):
     col1, col2 = st.columns(2)
  
     with col1:
-        st.write("### TENURE vs. CHURN")
+        st.write("### Tenure vs. Churn")
         tenure_churn_counts = df.groupby('TENURE')['CHURN'].value_counts().unstack()
         fig, ax = plt.subplots()
         tenure_churn_counts.plot(kind='bar', stacked=False, ax=ax)
@@ -149,7 +149,7 @@ dashboard_option = st.sidebar.radio("Select Dashboard", ["EDA Dashboard", "KPI D
  
 # Content of the selected dashboard
 if dashboard_option == "EDA Dashboard":
-    st.write("This is the EDA Dashboard")
+    #st.write("This is the EDA Dashboard")
     display_visualizations(df)
 elif dashboard_option == "KPI Dashboard":
     st.write("This is the KPI Dashboard")

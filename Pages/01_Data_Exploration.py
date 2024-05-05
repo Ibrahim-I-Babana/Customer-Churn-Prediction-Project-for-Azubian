@@ -6,11 +6,11 @@ import plotly.graph_objects as go
 
 st.set_page_config(
     page_title='View Data',
-    page_icon=':)',
+    page_icon=':📊)',
     layout='wide'
 )
 
-st.title('Exploratory Analysis of Telecommunications Data (EDA)')
+st.title('Exploratory Analysis of Telecommunications Data (EDA)📊📝_')
 
 
 # Data Loading
@@ -36,7 +36,7 @@ train_copy=train_data.copy()
 # Generate descriptive statistics of the churn_train DataFrame
 
 def display_descriptive_statistics(train_copy):
-    st.write("#### SAMPLE DATA:")
+    st.write("#### SAMPLE DATA📊:")
     st.write(train_copy.head(20))
     st.subheader("DESCRIPTIVE STATISTICS")
     st.write("#### Summary Statistics for Numerical Columns:")
@@ -89,7 +89,7 @@ display_descriptive_statistics(train_copy)
 
 '**FREQ_TOP_PACK:** *number of times the client has activated the top pack packages*'
 
-'**CHURN:** *variable to predict - Target*'
+'**CHURN:** whether customer will leave or not(Target Variable) where 0 == No & 1 == Yes '
 
 
 
