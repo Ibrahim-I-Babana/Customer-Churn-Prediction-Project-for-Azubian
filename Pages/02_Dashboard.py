@@ -11,7 +11,7 @@ st.set_page_config(
     layout='wide'
 )
  
-st.title(' :bar_chart: Customer Churn Dashboard')
+st.title(' :bar_chart: Customer Churn Dashboard📈_')
  
 df = pd.read_csv('Assets\Datasets\Train.csv')
 # Define a function to display visualizations
@@ -149,7 +149,7 @@ dashboard_option = st.sidebar.radio("Select Dashboard", ["EDA Dashboard", "KPI D
  
 # Content of the selected dashboard
 if dashboard_option == "EDA Dashboard":
-    st.write("This is the EDA Dashboard")
+    #st.write("This is the EDA Dashboard")
     display_visualizations(df)
 elif dashboard_option == "KPI Dashboard":
     st.write("This is the KPI Dashboard")

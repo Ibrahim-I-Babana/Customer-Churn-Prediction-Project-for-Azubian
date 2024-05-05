@@ -46,36 +46,27 @@ def choose_model():
         pipeline = load_LR_pipeline()
 
     #Load encoder from joblib
-   
     encoder = joblib.load('./Assets/models/Label_encoder.joblib')
 
     return pipeline, encoder
 def make_predictions(pipeline, encoder):
     #Create variables for each field by extracting using the session_state
-    Region = st.session_state['Region']
-    Tenure = st.session_state['Tenure']
-    Recharge_Amount = st.session_state['Recharge_Amount']
-    Recharge_Frequency = st.session_state['Recharge_Frequency']
-    Revenue = st.session_state['Revenue']
-    ARPU_Segment = st.session_state['ARPU_Segment']
-    Income_Frequency = st.session_state['Income_Frequency']
-    Data_Volume = st.session_state['Data_Volume']
-    On_Net = st.session_state['On_Net']
-    Orange = st.session_state['Orange']
-    Tigo = st.session_state['Tigo']
-    Regularity = st.session_state['Regularity']
-    Top_Pack = st.session_state['Top_Pack']
-    Frequency_Top_Pack = st.session_state['Frequency_Top_Pack']
+    Region = st.session_state['region']
+    Tenure = st.session_state['tenure']
+    Recharge_Amount = st.session_state['recharge_amount']
+    Recharge_Frequency = st.session_state['recharge_frequency']
+    Revenue = st.session_state['revenue']
+    ARPU_Segment = st.session_state['arpu_segment']
+    Income_Frequency = st.session_state['income_frequency']
+    Data_Volume = st.session_state['data_volume']
+    On_Net = st.session_state['on_net']
+    Orange = st.session_state['orange']
+    Tigo = st.session_state['tigo']
+    Regularity = st.session_state['regularity']
+    Top_Pack = st.session_state['top_pack']
+    Frequency_Top_Pack = st.session_state['frequency_top_pack']
 
 
-# Load the pre-saved machine learning model
-#model_path = 'Assets/models/Key_components.pickle' 
-#model = pickle.load(open(model_path, 'rb'))
-
-# Define the callback function to update session state
-#def update_inputs(value):
- #   key = st.session_context.get_id()
-  #  st.session_state.user_inputs[key] = value
 
 # Create three columns
     columns = ['Region', 'Tenure', 'Recharge_Amount', 'Recharge_Frequency', 'Revenue',
@@ -90,12 +81,12 @@ def make_predictions(pipeline, encoder):
 #Crete a dataframe
     Customer_predict_df =pd.DataFrame(data,columns=columns)
     Customer_predict_df['Prediction Time'] = datetime.date.today()
-    df =Customer_predict_df.to_csv('/Assets/Datasets/history.csv', mode = 'a', header = not os.path.exists('/Assets/Datasets/history.csv'),index=False)
+    df =Customer_predict_df.to_csv('./Assets/Datasets/history.csv', mode = 'a', header = not os.path.exists('./Assets/Datasets/history.csv'),index=False)
 
  #Predict a value from Customer_Predict_df
     Predict = pipeline.predict(Customer_predict_df)
     Prediction = int(Predict[0])
-    Prediction = encoder.inverse_transform(Prediction)
+    #Prediction = encoder.inverse_transform(Prediction)
 
 #Get Probabilities
     Probability = pipeline.predict_proba(Customer_predict_df)
@@ -115,6 +106,7 @@ if 'Probabilities' not in st.session_state:
        #'ARPU_Segment', 'Income_Frequency', 'Data_Volume', 'On_Net', 'Orange',
        #'Tigo', 'Regularity', 'Top_Pack', 'Frequency_Top_Pack'],
       #dtype='object')
+
 #Define functions that make predictions
 #Create columns for prediction page 
 def predict_page():
@@ -185,29 +177,16 @@ def predict_page():
 
 
 if __name__ == "__main__":
-    st.markdown("# 📈Make a Prediction")
+    st.markdown("#  🤔🌟📈Make a Prediction")
     predict_page()
 
-if 'Prediction' in st.session_state and 'Probabilities' in st.session_state:
-    pred = st.session_state['Prediction']
-    prob = st.session_state['Probabilities'][0][1] * 100  # Assuming the probability is stored in the first element of the list
-    statement = f"<h2><strong>The churn status of this customer is {pred} at a probability rate of {round(prob, 1)}%.</strong></h2>"
-    st.markdown(statement, unsafe_allow_html=True)
+    if 'Predictions' in st.session_state and 'Probabilities' in st.session_state:
+        pred = st.session_state['Predictions']
+        prob = st.session_state['Probabilities'][0][1] * 100  # Assuming the probability is stored in the first element of the list
+        statement = f"<h2><strong>The churn status of this customer is {pred} at a probability rate of {round(prob, 1)}%.</strong></h2>"
+        st.markdown(statement, unsafe_allow_html=True)
 
-st.write(st.session_state)
-
-#     # Prepare the input data for the model
-#     input_data = [st.session_state.user_inputs[key] for key in st.session_state.user_inputs.keys()]
-
-#     try:
-#         # Make the prediction
-#         prediction = model.predict([input_data])
-
-#         # Display the prediction result
-#         st.write(f"Customer Churn Prediction: {prediction[0]}")
-
-#     except Exception as e:
-#         st.error(f"Prediction error: {e}")
+#st.write(st.session_state)
 
 
 
